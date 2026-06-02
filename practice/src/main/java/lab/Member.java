@@ -6,6 +6,7 @@ public class Member {
     private String name;
     private int grade;
     private String major;
+    private String role;
     private String status;
     private String profileImg;
     private String email;
@@ -40,6 +41,14 @@ public class Member {
 
     public void setMajor(String major) {
         this.major = major;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public String getStatus() {

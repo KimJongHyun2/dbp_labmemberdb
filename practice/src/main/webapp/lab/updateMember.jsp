@@ -62,6 +62,17 @@
 			</div>
 
 			<div class="form-group row">
+				<label class="col-sm-2">역할</label>
+				<div class="col-sm-5">
+					<select name="role" class="form-control">
+						<option value="랩장" ${m.role == '랩장' ? 'selected' : ''}>랩장</option>
+						<option value="부랩장" ${m.role == '부랩장' ? 'selected' : ''}>부랩장</option>
+						<option value="랩원" ${m.role == '랩원' ? 'selected' : ''}>랩원</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="form-group row">
 				<label class="col-sm-2">상태</label>
 				<div class="col-sm-5">
 					<select name="status" class="form-control">

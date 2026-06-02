@@ -84,6 +84,7 @@
 			<th>학번</th>
 			<th>학년</th>
 			<th>전공</th>
+			<th>역할</th>
 			<th>이메일</th>
 			<th>상태</th>
 			<th>관리</th>
@@ -106,6 +107,8 @@
 				<td>${m.grade}학년</td>
 
 				<td>${m.major}</td>
+
+				<td>${m.role}</td>
 
 				<td>${m.email}</td>
 
@@ -131,4 +134,4 @@
 	</div>
 
 </body>
-</html>d
+</html>

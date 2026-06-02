@@ -141,6 +141,10 @@
 					</div>
 
 					<div class="info-item">
+						<b>역할</b> : ${m.role}
+					</div>
+
+					<div class="info-item">
 						<b>상태</b> :
 						<span class="status-badge">${m.status}</span>
 					</div>

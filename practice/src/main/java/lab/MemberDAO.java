@@ -38,7 +38,7 @@ public class MemberDAO {
 	public void insert(Member m) {
 		open();
 
-		String sql = "INSERT INTO member(studentid, name, grade, major, status, email, profileimg) VALUES(?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO member(studentid, name, grade, major, role, status, email, profileimg) VALUES(?,?,?,?,?,?,?,?)";
 
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -47,9 +47,10 @@ public class MemberDAO {
 			pstmt.setString(2, m.getName());
 			pstmt.setInt(3, m.getGrade());
 			pstmt.setString(4, m.getMajor());
-			pstmt.setString(5, m.getStatus());
-			pstmt.setString(6, m.getEmail());
-			pstmt.setString(7, m.getProfileImg());
+			pstmt.setString(5, m.getRole());
+			pstmt.setString(6, m.getStatus());
+			pstmt.setString(7, m.getEmail());
+			pstmt.setString(8, m.getProfileImg());
 
 			pstmt.executeUpdate();
 
@@ -67,7 +68,7 @@ public class MemberDAO {
 		List<Member> members = new ArrayList<>();
 
 		try {
-			pstmt = conn.prepareStatement("SELECT * FROM member");
+			pstmt = conn.prepareStatement("SELECT studentid, name, grade, major, role, status, email, profileimg FROM member");
 			ResultSet rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -77,6 +78,7 @@ public class MemberDAO {
 				m.setName(rs.getString("name"));
 				m.setGrade(rs.getInt("grade"));
 				m.setMajor(rs.getString("major"));
+				m.setRole(rs.getString("role"));
 				m.setStatus(rs.getString("status"));
 				m.setEmail(rs.getString("email"));
 				m.setProfileImg(rs.getString("profileimg"));
@@ -99,7 +101,7 @@ public class MemberDAO {
 		Member m = new Member();
 
 		try {
-			pstmt = conn.prepareStatement("SELECT * FROM member WHERE studentid = ?");
+			pstmt = conn.prepareStatement("SELECT studentid, name, grade, major, role, status, email, profileimg FROM member WHERE studentid = ?");
 			pstmt.setString(1, id);
 
 			ResultSet rs = pstmt.executeQuery();
@@ -109,6 +111,7 @@ public class MemberDAO {
 				m.setName(rs.getString("name"));
 				m.setGrade(rs.getInt("grade"));
 				m.setMajor(rs.getString("major"));
+				m.setRole(rs.getString("role"));
 				m.setStatus(rs.getString("status"));
 				m.setEmail(rs.getString("email"));
 				m.setProfileImg(rs.getString("profileimg"));
@@ -126,7 +129,7 @@ public class MemberDAO {
 	public void update(Member m) {
 		open();
 
-		String sql = "UPDATE member SET name=?, grade=?, major=?, status=?, email=?, profileimg=? WHERE studentid=?";
+		String sql = "UPDATE member SET name=?, grade=?, major=?, role=?, status=?, email=?, profileimg=? WHERE studentid=?";
 
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -134,10 +137,11 @@ public class MemberDAO {
 			pstmt.setString(1, m.getName());
 			pstmt.setInt(2, m.getGrade());
 			pstmt.setString(3, m.getMajor());
-			pstmt.setString(4, m.getStatus());
-			pstmt.setString(5, m.getEmail());
-			pstmt.setString(6, m.getProfileImg());
-			pstmt.setString(7, m.getStudentId());
+			pstmt.setString(4, m.getRole());
+			pstmt.setString(5, m.getStatus());
+			pstmt.setString(6, m.getEmail());
+			pstmt.setString(7, m.getProfileImg());
+			pstmt.setString(8, m.getStudentId());
 
 			pstmt.executeUpdate();
 

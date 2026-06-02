@@ -151,6 +151,7 @@ public class LabController extends HttpServlet {
 			m.setName(request.getParameter("name"));
 			m.setGrade(Integer.parseInt(request.getParameter("grade")));
 			m.setMajor(request.getParameter("major"));
+			m.setRole(request.getParameter("role"));
 			m.setStatus(request.getParameter("status"));
 			m.setEmail(request.getParameter("email"));
 
@@ -190,6 +191,7 @@ public class LabController extends HttpServlet {
 			m.setName(request.getParameter("name"));
 			m.setGrade(Integer.parseInt(request.getParameter("grade")));
 			m.setMajor(request.getParameter("major"));
+			m.setRole(request.getParameter("role"));
 			m.setStatus(request.getParameter("status"));
 			m.setEmail(request.getParameter("email"));
 

@@ -53,6 +53,17 @@
 			</div>
 
 			<div class="form-group row">
+				<label class="col-sm-2">역할</label>
+				<div class="col-sm-3">
+					<select name="role" class="form-control">
+						<option value="랩장">랩장</option>
+						<option value="부랩장">부랩장</option>
+						<option value="랩원">랩원</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="form-group row">
 				<label class="col-sm-2">상태</label>
 				<div class="col-sm-5">
 					<input type="radio" name="status" value="재학"> 재학
