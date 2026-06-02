@@ -148,4 +148,22 @@ public class MemberDAO {
 			close();
 		}
 	}
+
+	public void deleteMember(String studentId) {
+		open();
+
+		String sql = "DELETE FROM member WHERE studentid=?";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, studentId);
+			pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("DB DELETE 실패");
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+	}
 }

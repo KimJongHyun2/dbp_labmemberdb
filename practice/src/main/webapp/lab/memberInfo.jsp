@@ -3,7 +3,7 @@
 <html>
 <head>
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 
 <title>랩원 상세 정보</title>
 
@@ -13,10 +13,50 @@
 	}
 
 	.info-box {
+		position: relative;
 		background-color: white;
 		padding: 30px;
 		border-radius: 10px;
 		box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+	}
+
+	.member-menu {
+		top: 20px;
+		right: 20px;
+	}
+
+	.detail-menu-btn {
+		width: 36px;
+		height: 36px;
+		border-radius: 50%;
+		background-color: transparent !important;
+		border: 0 !important;
+		padding: 0;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		box-shadow: none !important;
+	}
+
+	.detail-menu-btn:hover {
+		background-color: #f1f3f5 !important;
+	}
+
+	.detail-menu-btn:focus,
+	.detail-menu-btn:active {
+		background-color: transparent !important;
+		box-shadow: none !important;
+	}
+
+	.detail-menu-btn.dropdown-toggle::after {
+		display: none;
+	}
+
+	.detail-menu-dot {
+		font-size: 26px;
+		line-height: 1;
+		color: #495057;
+		font-weight: bold;
 	}
 
 	.profile-img {
@@ -62,6 +102,21 @@
 	<div class="container">
 
 		<div class="info-box">
+
+			<div class="dropdown position-absolute member-menu">
+				<button class="btn detail-menu-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="설정 메뉴">
+					<span class="detail-menu-dot">⋮</span>
+				</button>
+				<ul class="dropdown-menu dropdown-menu-end">
+					<li>
+						<a class="dropdown-item text-danger"
+							href="${pageContext.request.contextPath}/labcontrol?action=delete&id=${member.studentId}"
+							onclick="return confirm('정말 삭제하시겠습니까?');">
+							삭제하기
+						</a>
+					</li>
+				</ul>
+			</div>
 
 			<div class="row">
 
@@ -115,6 +170,8 @@
 		<hr>
 
 	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

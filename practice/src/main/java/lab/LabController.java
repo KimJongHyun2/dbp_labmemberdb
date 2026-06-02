@@ -60,6 +60,7 @@ public class LabController extends HttpServlet {
 
 		case "memberInfo":
 			request.setAttribute("m", dao.find(request.getParameter("id")));
+			request.setAttribute("member", request.getAttribute("m"));
 			view = "memberInfo.jsp";
 			break;
 
@@ -90,6 +91,11 @@ public class LabController extends HttpServlet {
 		case "processUpdateMember":
 			view = processUpdateMember(request, response);
 			break;
+
+		case "delete":
+			dao.deleteMember(request.getParameter("id"));
+			response.sendRedirect(request.getContextPath() + "/labcontrol?action=memberList");
+			return;
 
 		default:
 			view = "welcome.jsp";
