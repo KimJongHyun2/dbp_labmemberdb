@@ -1,3 +1,3 @@
 <footer class="container">
-	<p>&copy; BookMarket</p>
+	<p>&copy; Awesome Lab</p>
 </footer>
