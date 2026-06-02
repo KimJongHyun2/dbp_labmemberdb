@@ -15,7 +15,6 @@
 
 				<%
 					String sessionId = (String) session.getAttribute("sessionId");
-
 					if (sessionId == null) {
 				%>
 
@@ -44,6 +43,13 @@
 				<%
 					}
 				%>
+
+				<li class="nav-item">
+					<a class="nav-link"
+						href="${pageContext.request.contextPath}/labcontrol?action=labInfo">
+						랩실소개
+					</a>
+				</li>
 
 				<li class="nav-item">
 					<a class="nav-link"
