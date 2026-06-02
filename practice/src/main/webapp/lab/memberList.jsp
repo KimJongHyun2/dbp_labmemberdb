@@ -73,6 +73,12 @@
 
 	<div class="container">
 
+		<div class="filter-buttons" style="text-align: right; margin-bottom: 15px;">
+			<a href="${pageContext.request.contextPath}/labcontrol?action=memberList&status=전체" class="btn btn-outline-dark btn-sm">전체보기</a>
+			<a href="${pageContext.request.contextPath}/labcontrol?action=memberList&status=재학" class="btn btn-success btn-sm">재학생 목록</a>
+			<a href="${pageContext.request.contextPath}/labcontrol?action=memberList&status=휴학" class="btn btn-secondary btn-sm">휴학생 목록</a>
+		</div>
+
 		<div class="table-box">
 
 			<table class="table table-bordered table-hover">

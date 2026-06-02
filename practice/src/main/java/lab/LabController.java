@@ -2,6 +2,7 @@ package lab;
 
 import java.io.IOException;
 import java.util.List; // 💡 List 사용을 위해 추가
+import java.util.ArrayList;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -43,7 +44,7 @@ public class LabController extends HttpServlet {
 
 		switch (action) {
 		// 💡 [내가 만든 파트] 랩실 소개 페이지 요청 처리 로직 추가
-		case "labInfo":
+		case "labInfo": {
 			List<Member> allMembers = dao.findAll(); // DB에서 전체 랩원 목록 조회 
 			
 			int activeCount = 0;
@@ -68,6 +69,7 @@ public class LabController extends HttpServlet {
 			
 			view = "labInfo.jsp";
 			break;
+		}
 
 		case "welcome":
 			view = "welcome.jsp";
@@ -81,10 +83,25 @@ public class LabController extends HttpServlet {
 			view = "welcomeUser.jsp";
 			break;
 
-		case "memberList":
-			request.setAttribute("members", dao.findAll());
+		case "memberList": {
+			List<Member> allMembers = dao.findAll();
+			String statusFilter = request.getParameter("status");
+
+			List<Member> filteredMembers = new ArrayList<>();
+			if (statusFilter == null || statusFilter.equals("") || statusFilter.equals("전체")) {
+				filteredMembers = allMembers;
+			} else {
+				for (Member m : allMembers) {
+					if (statusFilter.equals(m.getStatus())) {
+						filteredMembers.add(m);
+					}
+				}
+			}
+
+			request.setAttribute("members", filteredMembers);
 			view = "memberList.jsp";
 			break;
+		}
 
 		case "memberInfo":
 			request.setAttribute("m", dao.find(request.getParameter("id")));
