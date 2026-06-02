@@ -1,0 +1,15 @@
+# Build
+/target/
+/build/
+
+# Eclipse
+.settings/
+.classpath
+.project
+
+# 기존 예제 제외
+/src/main/java/ex11/
+/src/main/webapp/ex11/
+
+# 로그
+*.log
