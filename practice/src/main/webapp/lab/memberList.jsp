@@ -47,9 +47,20 @@
 	.status-badge {
 		padding: 6px 14px;
 		border-radius: 20px;
-		background-color: #343a40;
 		color: white;
 		font-size: 14px;
+	}
+
+	.status-active {
+		background-color: #28a745;
+	}
+
+	.status-leave {
+		background-color: #6c757d;
+	}
+
+	.status-graduate {
+		background-color: #343a40;
 	}
 
 	.btn-detail {
@@ -119,7 +130,17 @@
 				<td>${m.email}</td>
 
 				<td>
-					<span class="status-badge">${m.status}</span>
+					<c:choose>
+						<c:when test="${m.status eq '재학'}">
+							<span class="status-badge status-active">${m.status}</span>
+						</c:when>
+						<c:when test="${m.status eq '휴학'}">
+							<span class="status-badge status-leave">${m.status}</span>
+						</c:when>
+						<c:otherwise>
+							<span class="status-badge status-graduate">${m.status}</span>
+						</c:otherwise>
+					</c:choose>
 				</td>
 
 				<td>
