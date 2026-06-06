@@ -25,6 +25,13 @@
 					</a>
 				</li>
 
+				<li class="nav-item">
+					<a class="nav-link"
+						href="${pageContext.request.contextPath}/labcontrol?action=labInfo">
+						랩실소개
+					</a>
+				</li>
+
 				<%
 					} else {
 				%>
@@ -41,10 +48,6 @@
 						로그아웃
 					</a>
 				</li>
-
-				<%
-					}
-				%>
 
 				<li class="nav-item">
 					<a class="nav-link"
@@ -66,6 +69,10 @@
 						랩원등록
 					</a>
 				</li>
+
+				<%
+					}
+				%>
 
 			</ul>
 		</div>
