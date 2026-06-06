@@ -19,6 +19,8 @@ import javax.servlet.http.Part;
 @MultipartConfig(maxFileSize = 1024 * 1024 * 10, location = "c:/Temp/img")
 public class LabController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final String ADMIN_ID = "admin";
+	private static final String ADMIN_PASSWORD = "1234";
 
 	private MemberDAO dao;
 	private ServletContext ctx;
@@ -80,8 +82,8 @@ public class LabController extends HttpServlet {
 			break;
 
 		case "welcomeUser":
-			view = "welcomeUser.jsp";
-			break;
+			response.sendRedirect(request.getContextPath() + "/labcontrol?action=memberList");
+			return;
 
 		case "memberList": {
 			List<Member> allMembers = dao.findAll();
@@ -119,15 +121,25 @@ public class LabController extends HttpServlet {
 			break;
 
 		case "processLogin":
-			HttpSession session = request.getSession();
-			session.setAttribute("sessionId", request.getParameter("id"));
-			view = "welcomeUser.jsp";
+			String id = request.getParameter("id");
+			String password = request.getParameter("password");
+
+			if (ADMIN_ID.equals(id) && ADMIN_PASSWORD.equals(password)) {
+				HttpSession session = request.getSession();
+				session.setAttribute("sessionId", ADMIN_ID);
+				session.setAttribute("adminId", ADMIN_ID);
+				response.sendRedirect(request.getContextPath() + "/labcontrol?action=memberList");
+				return;
+			}
+
+			request.setAttribute("loginError", "아이디 또는 비밀번호가 올바르지 않습니다.");
+			view = "login.jsp";
 			break;
 
 		case "processLogout":
 			request.getSession().invalidate();
-			view = "welcome.jsp";
-			break;
+			response.sendRedirect(request.getContextPath() + "/labcontrol?action=welcome");
+			return;
 
 		case "processAddMember":
 			view = processAddMember(request, response);
