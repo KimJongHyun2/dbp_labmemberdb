@@ -48,7 +48,13 @@
 			
 			<div class="mt-5">
 				<a href="${pageContext.request.contextPath}/labcontrol?action=labInfo" class="btn btn-primary btn-lg mr-2">🔬 랩실 소개 보기</a>
+				<%
+					if (session.getAttribute("loginId") != null) {
+				%>
 				<a href="${pageContext.request.contextPath}/labcontrol?action=memberList" class="btn btn-outline-secondary btn-lg">👥 랩원 목록 조회</a>
+				<%
+					}
+				%>
 			</div>
 		</div>
 		<hr class="my-5">

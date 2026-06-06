@@ -14,8 +14,8 @@
 			<ul class="navbar-nav mr-auto">
 
 				<%
-					String adminId = (String) session.getAttribute("adminId");
-					if (adminId == null) {
+					String loginId = (String) session.getAttribute("loginId");
+					if (loginId == null) {
 				%>
 
 				<li class="nav-item">
@@ -38,7 +38,7 @@
 
 				<li class="nav-item">
 					<span class="navbar-text text-white">
-						[<%=adminId%>님]
+						[<%=loginId%>님]
 					</span>
 				</li>
 

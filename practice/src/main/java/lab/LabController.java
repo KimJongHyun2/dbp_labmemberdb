@@ -44,6 +44,11 @@ public class LabController extends HttpServlet {
 			return;
 		}
 
+		if (isLoginRequired(action) && !isLoggedIn(request)) {
+			response.sendRedirect(request.getContextPath() + "/labcontrol?action=login");
+			return;
+		}
+
 		switch (action) {
 		// 💡 [내가 만든 파트] 랩실 소개 페이지 요청 처리 로직 추가
 		case "labInfo": {
@@ -85,7 +90,8 @@ public class LabController extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "/labcontrol?action=memberList");
 			return;
 
-		case "memberList": {
+		case "memberList":
+		case "listMembers": {
 			List<Member> allMembers = dao.findAll();
 			String statusFilter = request.getParameter("status");
 
@@ -126,6 +132,7 @@ public class LabController extends HttpServlet {
 
 			if (ADMIN_ID.equals(id) && ADMIN_PASSWORD.equals(password)) {
 				HttpSession session = request.getSession();
+				session.setAttribute("loginId", ADMIN_ID);
 				session.setAttribute("sessionId", ADMIN_ID);
 				session.setAttribute("adminId", ADMIN_ID);
 				response.sendRedirect(request.getContextPath() + "/labcontrol?action=memberList");
@@ -160,6 +167,25 @@ public class LabController extends HttpServlet {
 		}
 
 		getServletContext().getRequestDispatcher("/lab/" + view).forward(request, response);
+	}
+
+	private boolean isLoggedIn(HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		return session != null && session.getAttribute("loginId") != null;
+	}
+
+	private boolean isLoginRequired(String action) {
+		return "memberList".equals(action)
+				|| "listMembers".equals(action)
+				|| "memberInfo".equals(action)
+				|| "addMember".equals(action)
+				|| "editMember".equals(action)
+				|| "updateMember".equals(action)
+				|| "processAddMember".equals(action)
+				|| "processUpdateMember".equals(action)
+				|| "delete".equals(action)
+				|| "deleteMember".equals(action)
+				|| "welcomeUser".equals(action);
 	}
 
 	public String processAddMember(HttpServletRequest request, HttpServletResponse response) {
